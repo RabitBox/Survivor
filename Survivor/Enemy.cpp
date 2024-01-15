@@ -10,3 +10,19 @@ Enemy::~Enemy()
 {
 
 }
+
+void Enemy::OnInitialize() {
+
+}
+
+void Enemy::OnUpdate() {
+
+}
+
+void Enemy::OnDraw() {
+
+}
+
+void Enemy::OnDestroy() {
+
+}

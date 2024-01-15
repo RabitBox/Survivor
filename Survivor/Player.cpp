@@ -10,3 +10,19 @@ Player::~Player()
 {
 
 }
+
+void Player::OnInitialize() {
+
+}
+
+void Player::OnUpdate() {
+
+}
+
+void Player::OnDraw() {
+
+}
+
+void Player::OnDestroy() {
+
+}
