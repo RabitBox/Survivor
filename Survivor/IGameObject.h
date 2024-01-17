@@ -1,12 +1,13 @@
 ﻿#pragma once
+#include <type_traits>
 #include "Transform2D.h"
 #include "Collider2D.h"
 
-class IGameObject : public std::enable_shared_from_this<IGameObject>
+class IGameObject
 {
 protected:
 	/// @brief コリジョン
-	std::shared_ptr<Collider2D> _colider;
+	Collider2D* _colider = nullptr;
 
 public:
 	/// @brief 座標系管理
@@ -17,9 +18,13 @@ public:
 	virtual ~IGameObject() {}
 
 public:
-	template<typename T> void InitColider();
+	template<typename T> void InitColider()
+	{
+		// コライダー生成
+		_colider = new T( this );
 
-protected:
-	std::shared_ptr<IGameObject> GetPtr() { return shared_from_this(); }
+		// コリジョンシステムに登録
+		/* 未対応 */
+	}
 };
 

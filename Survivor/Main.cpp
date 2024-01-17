@@ -21,7 +21,7 @@ void Main()
 	//font.addFallback(emojiFont);
 
 	MainGameState gameState;
-	gameState.Start();
+	gameState.Enter();
 
 	while (System::Update())
 	{
