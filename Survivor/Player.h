@@ -2,10 +2,10 @@
 #include "IGameObject.h"
 #include "ITask.h"
 
-class Player : public IGameObject, public ITask
+class Player final : public IGameObject, public ITask
 {
 public:
-	Player();
+	explicit Player();
 	virtual ~Player() override;
 
 public:
