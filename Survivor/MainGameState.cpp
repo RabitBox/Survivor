@@ -2,6 +2,7 @@
 #include "MainGameState.h"
 
 void MainGameState::Enter() {
+	// プレイヤー初期化
 	_player = new Player();
 }
 

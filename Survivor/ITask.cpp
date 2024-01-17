@@ -2,3 +2,5 @@
 #include "ITask.h"
 
 ITask::~ITask() {}
+
+void ITask::OnErase(){}

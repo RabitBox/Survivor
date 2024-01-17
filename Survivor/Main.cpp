@@ -1,9 +1,12 @@
 ﻿# include <Siv3D.hpp> // Siv3D v0.6.13
 
 #include "MainGameState.h"
+#include "TaskManager.h"
 
 void Main()
 {
+	using namespace Task;
+
 	// 背景の色を設定する | Set the background color
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 
@@ -20,6 +23,8 @@ void Main()
 	//const Font emojiFont{ 48, Typeface::ColorEmoji };
 	//font.addFallback(emojiFont);
 
+	TaskManager::Create();
+
 	MainGameState gameState;
 	gameState.Enter();
 
@@ -32,6 +37,8 @@ void Main()
 	}
 
 	gameState.Exit();
+
+	TaskManager::Release();
 }
 
 //
