@@ -5,24 +5,36 @@ class IGameObject;
 /// @brief 2Dコライダー基底クラス
 class Collider2D{
 public:
+	enum Tag {
+		INVALID = -1,	// 固定
+		PLAYER,
+		ENEMY,
+		BULLET,
+		MAX_TAG,	// 固定
+	};
+
 	enum class Type{
-		INVALID,
-		CIRCLE
+		INVALID = -1,	// 固定
+		CIRCLE,
+		MAX_TYPE,	// 固定
 	};
 
 private:
+	Tag _tag;
 	Type _type;
 
 protected:
 	IGameObject* _owner;
 
 protected:
-	Collider2D() : _type(Type::INVALID), _owner(nullptr) {}
+	Collider2D() : _tag(INVALID), _type(Type::INVALID), _owner(nullptr) {}
 
 public:
-	Collider2D(Type type, IGameObject* owner) : _type(type), _owner(owner) {}
+	Collider2D(Type type, IGameObject* owner) : _tag(INVALID), _type(type), _owner(owner) {}
 	virtual ~Collider2D() {}
 
+	Tag GetTag() const { return _tag; }
+	void SetTag(Tag tag) { _tag = tag; }
 	Type GetType() const { return _type; }
 	IGameObject* GetOwner() const { return _owner; }
 

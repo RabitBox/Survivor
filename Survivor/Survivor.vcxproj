@@ -123,6 +123,7 @@
     <ClCompile Include="ITask.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainGameState.cpp" />
+    <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -331,6 +332,7 @@
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="ITask.h" />
     <ClInclude Include="MainGameState.h" />
+    <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="stdafx.h" />
