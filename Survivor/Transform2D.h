@@ -11,6 +11,7 @@ struct Transform2D
 	virtual ~Transform2D() {}
 
 	void SetPosition(Vector2 vec) { Position = vec; }
+	void SetPosition(int x, int y) { Position.X = x; Position.Y = y; }
 	void SetSize(float size) { Size = size; }
 };
 

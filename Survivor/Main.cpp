@@ -33,9 +33,6 @@ void Main()
 
 	while (System::Update())
 	{
-		// 長方形を描く | Draw a rectangle
-		Rect{ 540, 20, 80, 80 }.draw();
-
 		// 解放処理
 		TaskManager::Run( TaskType::RELEASE );
 

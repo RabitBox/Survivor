@@ -5,6 +5,11 @@
 
 Player::Player()
 {
+	// 初期座標設定
+	auto size = Scene::Size() / 2;
+	Transform.SetPosition( size.x, size.y );
+	Transform.SetSize( 100.0f );
+
 	// コライダー初期化
 	InitColider<CircleCollider>();
 
@@ -27,12 +32,16 @@ void Player::OnUpdate() {
 
 }
 
-void Player::OnDraw() {
-	// emoji.scaled(0.75).mirrored(isPlayerFacingRight).drawAt(playerPosX, 540);
+void Player::OnDraw()
+{
 	auto Pos = Transform.Position;
-	_charImage.drawAt(Pos.X, Pos.Y);
+	auto Size = Transform.Size;
+	_charImage
+		.resized( Size )
+		.drawAt(Pos.X, Pos.Y);
 }
 
-void Player::OnDestroy() {
+void Player::OnDestroy()
+{
 
 }
