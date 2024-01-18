@@ -2,6 +2,7 @@
 
 #include "MainGameState.h"
 #include "TaskManager.h"
+#include "PhysicsSystem.h"
 
 void Main()
 {
@@ -23,7 +24,9 @@ void Main()
 	//const Font emojiFont{ 48, Typeface::ColorEmoji };
 	//font.addFallback(emojiFont);
 
+	// 各種システムの立ち上げ
 	TaskManager::Create();
+	PhysicsSystem::Create();
 
 	MainGameState gameState;
 	gameState.Enter();
@@ -48,7 +51,9 @@ void Main()
 
 	gameState.Exit();
 
+	// 各種システムをクローズ
 	TaskManager::Release();
+	PhysicsSystem::Release();
 }
 
 //
