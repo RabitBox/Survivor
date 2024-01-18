@@ -3,8 +3,14 @@
 /// @brief ベクトル
 struct Vector2
 {
-	float X;
-	float Y;
+	union {
+		float X;
+		float Width;
+	};
+	union {
+		float Y;
+		float Height;
+	};
 
 	Vector2() { X = 0.f; Y = 0.f; }
 	Vector2(float x, float y) { X = x, Y = y; }
