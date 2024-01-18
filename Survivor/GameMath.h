@@ -27,6 +27,18 @@ struct Vector2
 		return *this;
 	}
 
+	Vector2 operator - (Vector2 vec) {
+		X -= vec.X;
+		Y -= vec.Y;
+		return *this;
+	}
+
+	Vector2 operator -= (Vector2 vec) {
+		X -= vec.X;
+		Y -= vec.Y;
+		return *this;
+	}
+
 	Vector2 operator * (float f) {
 		X *= f;
 		Y *= f;
