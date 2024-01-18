@@ -5,6 +5,13 @@
 
 namespace Task
 {
+	enum class TaskType
+	{
+		UPDATE,		// 更新
+		DRAW,		// 描画
+		RELEASE,	// タスク解放
+	};
+
 	/// @brief タスクの処理優先度
 	enum Priority
 	{
@@ -27,11 +34,14 @@ namespace Task
 		void RegisterTask( ITask* task, Priority priority );
 		void UnregisterTask( ITask* task, Priority priority );
 
+		void UpdateTask();
+		void DrawTask();
 		void RemoveTask();
 
+		void RunAll( TaskType type );
 	public:
 		/// @brief タスク更新
-		static void Update();
+		static void Run( TaskType type );
 
 		/// @brief タスクの登録
 		/// @param task タスク

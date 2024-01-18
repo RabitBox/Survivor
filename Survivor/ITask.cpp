@@ -1,6 +1,6 @@
 ﻿#include "stdafx.h"
 #include "ITask.h"
 
-ITask::~ITask() {}
+Task::ITask::~ITask() {}
 
-void ITask::OnErase(){}
+void Task::ITask::OnErase(){}

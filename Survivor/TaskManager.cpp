@@ -33,6 +33,32 @@ void TaskManager::UnregisterTask(ITask* task, Priority priority)
 	_unregisterList.push_back( std::pair<ITask*, Priority>(task, priority) );
 }
 
+/// @brief タスク更新
+void TaskManager::UpdateTask()
+{
+	for (int i = 0; i < MAX_LEVEL; ++i) {
+		for (const auto& obj : _taskList[i])
+		{
+			if ( obj->_initialized == false ) {
+				obj->OnInitialize();
+				obj->_initialized = true;
+			}
+			obj->OnUpdate();
+		}
+	}
+}
+
+/// @brief タスク描画
+void TaskManager::DrawTask()
+{
+	for (int i = 0; i < MAX_LEVEL; ++i) {
+		for (const auto& obj : _taskList[i])
+		{
+			obj->OnDraw();
+		}
+	}
+}
+
 /// @brief タスクを取り除く
 void TaskManager::RemoveTask()
 {
@@ -44,15 +70,33 @@ void TaskManager::RemoveTask()
 	}
 	_unregisterList.clear();
 }
+
+/// @brief タスク全実行
+/// @param type 実行するタスクタイプ
+void TaskManager::RunAll( TaskType type )
+{
+	switch ( type )
+	{
+	case TaskType::UPDATE: {
+		UpdateTask();
+	} break;
+
+	case TaskType::DRAW: {
+		DrawTask();
+	} break;
+
+	case TaskType::RELEASE: {
+		RemoveTask();
+	} break;
+	}
+}
 #pragma endregion
 
-void TaskManager::Update()
+/// @brief タスク更新
+/// @param type タスクタイプ
+void TaskManager::Run(TaskType type)
 {
-	// 登録解除手続きを行ったタスクの削除
-
-	//
-
-	// 
+	GetInstance()->RunAll( type );
 }
 
 /// @brief タスクの登録

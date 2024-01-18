@@ -2,7 +2,7 @@
 #include "IGameObject.h"
 #include "ITask.h"
 
-class Enemy : public IGameObject, public ITask
+class Enemy : public IGameObject, public Task::ITask
 {
 public:
 	Enemy();

@@ -2,7 +2,7 @@
 #include "IGameObject.h"
 #include "ITask.h"
 
-class Player final : public IGameObject, public ITask
+class Player final : public IGameObject, public Task::ITask
 {
 public:
 	explicit Player();
