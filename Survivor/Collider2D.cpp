@@ -20,16 +20,16 @@ bool CircleCollider::IsHit(Collider2D* target)
 	{
 	case Type::CIRCLE: {
 		auto targetOwner = target->GetOwner();
-		auto tgtCollider = static_cast<CircleCollider*>(target);
 		return IsHitCircle(
 			/* posA   = */ _owner->Transform.Position,
 			/* posB	  = */ targetOwner->Transform.Position,
-			/* radius = */ _radius + tgtCollider->GetRadius()
+			/* radius = */ _owner->Transform.Size + targetOwner->Transform.Size
 		);
-		break;
-	}
-	default:
-		break;
+	} break;
+
+	default: {
+
+	}break;
 	}
 	return false;
 }

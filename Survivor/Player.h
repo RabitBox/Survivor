@@ -4,6 +4,9 @@
 
 class Player final : public IGameObject, public Task::ITask
 {
+private:
+	Texture _charImage{ U"🦖"_emoji };
+
 public:
 	explicit Player();
 	virtual ~Player() override;

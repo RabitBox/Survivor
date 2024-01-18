@@ -33,7 +33,17 @@ void Main()
 		// 長方形を描く | Draw a rectangle
 		Rect{ 540, 20, 80, 80 }.draw();
 
+		// 解放処理
+		TaskManager::Run( TaskType::RELEASE );
+
+		// タスク更新処理
+		TaskManager::Run( TaskType::UPDATE );
+
+		// システム更新処理
 		gameState.Update();
+
+		// 描画処理
+		TaskManager::Run( TaskType::DRAW );
 	}
 
 	gameState.Exit();

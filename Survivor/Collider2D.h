@@ -32,17 +32,11 @@ public:
 /// @brief 2Dコライダー 円
 class CircleCollider final : public Collider2D {
 private:
-	CircleCollider() : _radius(1.f) {}
+	CircleCollider() {}
 	CircleCollider(CircleCollider&&) = delete;
 
-	float _radius;
-
 public:
-	CircleCollider(IGameObject* owner) : Collider2D(Type::CIRCLE, owner), _radius(1.f) {}
+	CircleCollider(IGameObject* owner) : Collider2D(Type::CIRCLE, owner) {}
 
 	bool IsHit(Collider2D* target) override;
-
-public:
-	void SetRadius(float radius) { _radius = radius; }
-	float GetRadius() const { return _radius; }
 };
