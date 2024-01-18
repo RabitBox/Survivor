@@ -29,6 +29,8 @@ void Player::OnUpdate() {
 
 void Player::OnDraw() {
 	// emoji.scaled(0.75).mirrored(isPlayerFacingRight).drawAt(playerPosX, 540);
+	auto Pos = Transform.Position;
+	_charImage.drawAt(Pos.X, Pos.Y);
 }
 
 void Player::OnDestroy() {
