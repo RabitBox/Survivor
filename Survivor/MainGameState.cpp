@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "MainGameState.h"
+#include "PhysicsSystem.h"
 
 /// @brief シーン開始
 void MainGameState::Enter() {
@@ -10,6 +11,7 @@ void MainGameState::Enter() {
 /// @brief シーン更新
 void MainGameState::Update() {
 	// 衝突判定
+	PhysicsSystem::Run();
 	
 	// 更新
 	{

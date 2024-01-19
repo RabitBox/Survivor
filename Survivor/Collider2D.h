@@ -25,6 +25,7 @@ private:
 
 protected:
 	IGameObject* _owner;
+	std::function<bool(Collider2D*)> _callback;
 
 protected:
 	Collider2D() : _tag(Tag::INVALID), _type(Type::INVALID), _owner(nullptr) {}
@@ -33,10 +34,25 @@ public:
 	Collider2D(Type type, IGameObject* owner) : _tag(Tag::INVALID), _type(type), _owner(owner) {}
 	virtual ~Collider2D() {}
 
+	/// @brief タグ取得
+	/// @return タグ
 	Tag GetTag() const { return _tag; }
+
+	/// @brief タグセット
+	/// @param tag セットするタグ
 	void SetTag(Tag tag) { _tag = tag; }
+
+	/// @brief タイプ取得
+	/// @return タイプ
 	Type GetType() const { return _type; }
+
+	/// @brief コリジョンの所有者を取得
+	/// @return 所有者
 	IGameObject* GetOwner() const { return _owner; }
+
+	/// @brief コールバック関数登録
+	/// @param callback 登録する関数
+	void SetCallback(std::function<bool(Collider2D*)> callback) { _callback = callback; }
 
 	virtual bool IsHit(Collider2D* target) = 0;
 };
