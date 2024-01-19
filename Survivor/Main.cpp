@@ -11,21 +11,7 @@ void Main()
 	// 背景の色を設定する | Set the background color
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 
-	// 画像ファイルからテクスチャを作成する | Create a texture from an image file
-	//const Texture texture{ U"example/windmill.png" };
-
-	// 絵文字からテクスチャを作成する | Create a texture from an emoji
-	//const Texture emoji{ U"🦖"_emoji };
-
-	// 太文字のフォントを作成する | Create a bold font with MSDF method
-	//const Font font{ FontMethod::MSDF, 48, Typeface::Bold };
-
-	// テキストに含まれる絵文字のためのフォントを作成し、font に追加する | Create a font for emojis in text and add it to font as a fallback
-	//const Font emojiFont{ 48, Typeface::ColorEmoji };
-	//font.addFallback(emojiFont);
-
 	// 各種システムの立ち上げ
-	TaskManager::Create();
 	PhysicsSystem::Create();
 
 	MainGameState gameState;
@@ -33,23 +19,13 @@ void Main()
 
 	while (System::Update())
 	{
-		// 解放処理
-		TaskManager::Run( TaskType::RELEASE );
-
-		// タスク更新処理
-		TaskManager::Run( TaskType::UPDATE );
-
 		// システム更新処理
 		gameState.Update();
-
-		// 描画処理
-		TaskManager::Run( TaskType::DRAW );
 	}
 
 	gameState.Exit();
 
 	// 各種システムをクローズ
-	TaskManager::Release();
 	PhysicsSystem::Release();
 }
 

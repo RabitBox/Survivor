@@ -9,7 +9,27 @@ void MainGameState::Enter() {
 
 /// @brief シーン更新
 void MainGameState::Update() {
+	// 衝突判定
+	
+	// 更新
+	{
+		_player->OnUpdate();
+		for (auto enemy : _enemies) {
+			if (enemy) {
+				enemy->OnUpdate();
+			}
+		}
+	}
 
+	// 描画
+	{
+		_player->OnDraw();
+		for (auto enemy : _enemies) {
+			if (enemy) {
+				enemy->OnDraw();
+			}
+		}
+	}
 }
 
 /// @brief シーン終了

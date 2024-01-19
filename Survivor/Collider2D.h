@@ -5,7 +5,7 @@ class IGameObject;
 /// @brief 2Dコライダー基底クラス
 class Collider2D{
 public:
-	enum Tag {
+	enum class Tag {
 		INVALID = -1,	// 固定
 		PLAYER,
 		ENEMY,
@@ -27,10 +27,10 @@ protected:
 	IGameObject* _owner;
 
 protected:
-	Collider2D() : _tag(INVALID), _type(Type::INVALID), _owner(nullptr) {}
+	Collider2D() : _tag(Tag::INVALID), _type(Type::INVALID), _owner(nullptr) {}
 
 public:
-	Collider2D(Type type, IGameObject* owner) : _tag(INVALID), _type(type), _owner(owner) {}
+	Collider2D(Type type, IGameObject* owner) : _tag(Tag::INVALID), _type(type), _owner(owner) {}
 	virtual ~Collider2D() {}
 
 	Tag GetTag() const { return _tag; }

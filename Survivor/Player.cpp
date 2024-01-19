@@ -15,9 +15,6 @@ Player::Player()
 
 	// コライダー初期化
 	InitColider<CircleCollider>();
-
-	// タスクシステムへ登録
-	Task::TaskManager::Register( this, Task::LEVEL_1 );
 }
 
 Player::~Player()
