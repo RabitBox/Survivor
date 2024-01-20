@@ -2,6 +2,7 @@
 #include <type_traits>
 #include "Transform2D.h"
 #include "Collider2D.h"
+#include "PhysicsSystem.h"
 
 class IGameObject
 {
@@ -18,13 +19,15 @@ public:
 	virtual ~IGameObject() {}
 
 public:
-	template<typename T> void InitColider()
+	template<typename T> void InitColider(Collider2D::Tag tag)
 	{
 		// コライダー生成
 		_colider = new T( this );
 
 		// コリジョンシステムに登録
-		/* 未対応 */
+		PhysicsSystem::Register( _colider, tag );
 	}
+
+	virtual bool HitCallback( Collider2D* target ) = 0;
 };
 

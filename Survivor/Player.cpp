@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "Player.h"
 #include "Collider2D.h"
-#include "TaskManager.h"
+#include "PhysicsSystem.h"
 
 Player::Player()
 {
@@ -14,7 +14,7 @@ Player::Player()
 	_moveSpeed = 100.f;
 
 	// コライダー初期化
-	InitColider<CircleCollider>();
+	InitColider<CircleCollider>( Collider2D::Tag::PLAYER );
 }
 
 Player::~Player()
@@ -44,6 +44,8 @@ void Player::OnUpdate() {
 	else if ( KeyS.pressed() ) {
 		Transform.Position.Y += ( speed );
 	}
+
+	PhysicsSystem::Stack( _colider );
 }
 
 void Player::OnDraw()
@@ -57,5 +59,10 @@ void Player::OnDraw()
 
 void Player::OnDestroy()
 {
+	
+}
 
+bool Player::HitCallback(Collider2D* target)
+{
+	return false;
 }

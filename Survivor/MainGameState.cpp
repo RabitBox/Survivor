@@ -10,9 +10,6 @@ void MainGameState::Enter() {
 
 /// @brief シーン更新
 void MainGameState::Update() {
-	// 衝突判定
-	PhysicsSystem::Run();
-	
 	// 更新
 	{
 		_player->OnUpdate();

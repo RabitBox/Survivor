@@ -29,7 +29,7 @@ void PhysicsSystem::CheckStackAll()
 		switch ( tag )
 		{
 		case Collider2D::Tag::PLAYER: {
-
+			HitToAll( (*itr), Collider2D::Tag::ENEMY );
 		}break;
 
 		case Collider2D::Tag::ENEMY: {
@@ -49,10 +49,13 @@ void PhysicsSystem::CheckStackAll()
 /// @param tag 検知したいコリジョンのタグ
 void PhysicsSystem::HitToAll(Collider2D* collision, Collider2D::Tag tag)
 {
-	auto refList( _colliderList[(int)tag] );
+	auto& refList( _colliderList[(int)tag] );
 	for (auto itr = refList.begin(); itr != refList.end(); ++itr) {
-		if ( collision->IsHit( *itr ) ) {
+		auto& refTarget( *itr );
+		if ( collision->IsHit( refTarget ) ) {
 			// 相互にヒット時のコールバックを送る
+			collision->_callback( refTarget );
+			refTarget->_callback( collision );
 		}
 	}
 }

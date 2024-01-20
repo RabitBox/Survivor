@@ -14,7 +14,7 @@ namespace Task
 		bool _initialized;
 
 	public:
-		ITask() {}
+		ITask() : _initialized(false) {}
 		virtual ~ITask() = 0;
 
 	public:

@@ -1,9 +1,12 @@
 ﻿#pragma once
 
+class PhysicsSystem;
 class IGameObject;
 
 /// @brief 2Dコライダー基底クラス
 class Collider2D{
+	friend PhysicsSystem;
+
 public:
 	enum class Tag {
 		INVALID = -1,	// 固定

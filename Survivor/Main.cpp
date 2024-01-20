@@ -8,17 +8,21 @@ void Main()
 {
 	using namespace Task;
 
+	MainGameState gameState;
+
 	// 背景の色を設定する | Set the background color
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 
 	// 各種システムの立ち上げ
 	PhysicsSystem::Create();
 
-	MainGameState gameState;
 	gameState.Enter();
 
 	while (System::Update())
 	{
+		// 衝突判定
+		PhysicsSystem::Run();
+
 		// システム更新処理
 		gameState.Update();
 	}
