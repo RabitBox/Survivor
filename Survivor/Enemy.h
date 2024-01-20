@@ -2,6 +2,8 @@
 #include "IGameObject.h"
 #include "ITask.h"
 
+class SceneStateBase;
+
 class Enemy : public IGameObject, public Task::ITask
 {
 private:

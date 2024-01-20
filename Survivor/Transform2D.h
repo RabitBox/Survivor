@@ -13,5 +13,12 @@ struct Transform2D
 	void SetPosition(Vector2 vec) { Position = vec; }
 	void SetPosition(int x, int y) { Position.X = x; Position.Y = y; }
 	void SetSize(float size) { Size = size; }
+
+	float GetRadius() {
+		if (Size > 0.0f) {
+			return Size / 2.0f;
+		}
+		return 0.0f;
+	}
 };
 

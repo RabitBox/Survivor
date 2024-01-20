@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Enemy.h"
+#include "MainGameState.h"
 
 Enemy::Enemy()
 {
@@ -10,12 +11,16 @@ Enemy::Enemy()
 
 	// コライダー初期化
 	InitColider<CircleCollider>( Collider2D::Tag::ENEMY );
+
+	_collider->SetCallback( std::bind(&Enemy::HitCallback, &(*this), std::placeholders::_1) );
+	// _collider->SetCallback( [this](Collider2D* obj) { return this->HitCallback(obj); });
 }
 
 Enemy::~Enemy()
 {
-	if (_colider) {
-		delete _colider;
+	if (_collider) {
+		delete _collider;
+		_collider = nullptr;
 	}
 }
 
@@ -45,10 +50,15 @@ void Enemy::OnDraw() {
 }
 
 void Enemy::OnDestroy() {
-	
+	PhysicsSystem::Remove(_collider, Collider2D::Tag::ENEMY );
 }
 
 bool Enemy::HitCallback(Collider2D* target)
 {
+	auto owner = static_cast<MainGameState*>(_ownerScene);
+	if (owner) {
+		owner->RemoveEnemy( this );
+		return true;
+	}
 	return false;
 }

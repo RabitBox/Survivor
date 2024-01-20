@@ -23,7 +23,7 @@ bool CircleCollider::IsHit(Collider2D* target)
 		return IsHitCircle(
 			/* posA   = */ _owner->Transform.Position,
 			/* posB	  = */ targetOwner->Transform.Position,
-			/* radius = */ _owner->Transform.Size + targetOwner->Transform.Size
+			/* radius = */ _owner->Transform.GetRadius() + targetOwner->Transform.GetRadius()
 		);
 	} break;
 

@@ -4,8 +4,9 @@
 #include <vector>
 #include "Player.h"
 #include "Enemy.h"
+#include "SceneStateBase.h"
 
-class MainGameState
+class MainGameState : public SceneStateBase
 {
 public:
 	/// @brief ゲーム内に存在できる敵の上限
@@ -31,5 +32,8 @@ public:
 
 private:
 	void SpawnEnemy();
+
+public:
+	void RemoveEnemy( Enemy* enemy );
 };
 

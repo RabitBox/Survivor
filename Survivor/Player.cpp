@@ -15,12 +15,13 @@ Player::Player()
 
 	// コライダー初期化
 	InitColider<CircleCollider>( Collider2D::Tag::PLAYER );
+	_collider->SetCallback(std::bind(&Player::HitCallback, &(*this), std::placeholders::_1));
 }
 
 Player::~Player()
 {
-	if ( _colider ) {
-		delete _colider;
+	if (_collider) {
+		delete _collider;
 	}
 }
 
@@ -45,7 +46,7 @@ void Player::OnUpdate() {
 		Transform.Position.Y += ( speed );
 	}
 
-	PhysicsSystem::Stack( _colider );
+	PhysicsSystem::Stack( _collider );
 }
 
 void Player::OnDraw()

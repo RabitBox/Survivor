@@ -9,6 +9,8 @@
 void MainGameState::Enter() {
 	// プレイヤー初期化
 	_player = new Player();
+	_player->SetScene( this );
+
 	_enemies.reserve( MainGameState::MAX_ENEMY );
 }
 
@@ -96,16 +98,16 @@ void MainGameState::SpawnEnemy()
 		auto obj = _enemies.back();
 		obj->Transform.SetPosition(spawnPosition.X, spawnPosition.Y);
 		obj->SetTarget( _player );
+		obj->SetScene( this );
 	}
+}
 
-	//for ( auto index = 0; index < MainGameState::MAX_ENEMY; ++index ) {
-	//	if ( _enemies[index] == nullptr ) {
-	//		_enemies[index] = new Enemy();
-	//		auto size = Scene::Center();
-	//		_enemies[index]->Transform.SetPosition(size.x, size.y);
-	//		//_enemies[index]->Transform.Position = spawnPosition;
-	//		//_enemies[index]->SetTarget( _player );
-	//		break;
-	//	}
-	//}
+void MainGameState::RemoveEnemy(Enemy* enemy)
+{
+	auto itr = std::find(_enemies.begin(), _enemies.end(), enemy);
+	if ( itr != _enemies.end() ) {
+		// (*itr)->OnDestroy();
+		delete (*itr);
+		_enemies.erase( itr );
+	}
 }

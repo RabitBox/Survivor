@@ -50,11 +50,4 @@ struct Vector2
 		X = X / length;
 		Y = Y / length;
 	}
-
-	float GetRadius() {
-		if ( X > 0.0f ) {
-			return X / 2.0f;
-		}
-		return 0.0f;
-	}
 };

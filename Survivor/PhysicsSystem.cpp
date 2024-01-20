@@ -16,8 +16,15 @@ void PhysicsSystem::RemoveFromList()
 {
 	for (auto itr = _removeList.begin(); itr != _removeList.end(); ++itr) {
 		auto& refList(_colliderList[(int)itr->second]);
-		auto removeItr = std::remove(refList.begin(), refList.end(), itr->first);
-		refList.erase(removeItr, refList.end());
+		auto findItr = std::find(refList.begin(), refList.end(), itr->first);
+		if ( findItr != refList.end() ) {
+			refList.erase( findItr );
+		}
+	}
+
+	for(auto obj : _colliderList)
+	{
+		obj.erase( std::remove(obj.begin(), obj.end(), nullptr), obj.end() );
 	}
 }
 
