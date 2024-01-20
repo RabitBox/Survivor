@@ -6,6 +6,7 @@ Enemy::Enemy()
 	// 初期化
 	_target = nullptr;
 	_moveSpeed = 80.f;
+	Transform.SetSize( 90.0f );
 
 	// コライダー初期化
 	InitColider<CircleCollider>( Collider2D::Tag::ENEMY );
@@ -25,10 +26,13 @@ void Enemy::OnInitialize() {
 void Enemy::OnUpdate() {
 	if ( _target ) {
 		// ターゲット方向へのベクトルを取得
-		auto targetVec = (_target->Transform.Position - Transform.Position);
+		auto targetVec = _target->Transform.Position;
+		targetVec -= Transform.Position;
 		targetVec.Normalize();
+
 		// 常にターゲット方向へ進行する
-		Transform.Position += (targetVec * _moveSpeed);
+		auto moveSpeed = _moveSpeed * Scene::DeltaTime();
+		Transform.Position += (targetVec * moveSpeed);
 	}
 }
 

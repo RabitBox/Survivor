@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <memory>
 #include <array>
+#include <vector>
 #include "Player.h"
 #include "Enemy.h"
 
@@ -15,16 +16,20 @@ private:
 	Player* _player;
 
 	/// @brief 敵
-	std::array<Enemy*, MAX_ENEMY> _enemies;
+	std::vector<Enemy*> _enemies;
 
+	float _timer;
 
 public:
-	explicit MainGameState() : _player(nullptr), _enemies({}) {}
+	explicit MainGameState() : _player(nullptr), _enemies({}), _timer(0.0f){}
 	virtual ~MainGameState() {}
 
 public:
 	void Enter();
 	void Update();
 	void Exit();
+
+private:
+	void SpawnEnemy();
 };
 

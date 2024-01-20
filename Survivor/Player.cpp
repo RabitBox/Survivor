@@ -8,7 +8,7 @@ Player::Player()
 	// 初期座標設定
 	auto size = Scene::Center();
 	Transform.SetPosition( size.x, size.y );
-	Transform.SetSize( 100.0f );
+	Transform.SetSize( 70.0f );
 
 	// パラメータ初期化
 	_moveSpeed = 100.f;
