@@ -30,8 +30,8 @@ void Player::OnInitialize() {
 }
 
 void Player::OnUpdate() {
+	// 移動
 	auto speed = _moveSpeed * Scene::DeltaTime();
-
 	if ( KeyA.pressed() ) {
 		Transform.Position.X -= ( speed );
 	}
@@ -46,6 +46,22 @@ void Player::OnUpdate() {
 		Transform.Position.Y += ( speed );
 	}
 
+	// 移動範囲制限
+	auto size = Scene::Size();
+	Transform.Position.X = std::min(
+		std::max(
+			Transform.Position.X,
+			0.f),
+		(float)size.x
+	);
+	Transform.Position.Y = std::min(
+		std::max(
+			Transform.Position.Y,
+			0.f),
+		(float)size.y
+	);
+
+	// コリジョン計算対象として登録
 	PhysicsSystem::Stack( _collider );
 }
 
